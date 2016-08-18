@@ -1,13 +1,13 @@
 import { isAuthenticated } from 'src/core/auth';
 import App from './app';
 import SignIn from './pages/sign-in';
-import Tasks from './pages/tasks';
+import Beo from './pages/beo';
 
 
 export const paths = {
   ROOT: '/',
   SIGN_IN: '/sign-in',
-  TASKS: '/'
+  BEO: '/'
 };
 
 
@@ -22,7 +22,7 @@ const requireAuth = getState => {
 const requireUnauth = getState => {
   return (nextState, replace) => {
     if (isAuthenticated(getState())) {
-      replace(paths.TASKS);
+      replace(paths.BEO);
     }
   };
 };
@@ -35,7 +35,7 @@ export const getRoutes = getState => {
     childRoutes: [
       {
         indexRoute: {
-          component: Tasks,
+          component: Beo,
           onEnter: requireAuth(getState)
         }
       },
